@@ -1,6 +1,8 @@
 package com.readingisgood.api.dto.order;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.readingisgood.api.request.ValidatedRequest;
 import com.readingisgood.constant.ApiDoc;
 import com.readingisgood.constant.Constant;
 import com.readingisgood.constant.FieldLength;
@@ -13,7 +15,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Data
-public class OrderDTO {
+public class OrderDTO implements ValidatedRequest {
 
     private Long id;
 
@@ -29,4 +31,9 @@ public class OrderDTO {
     @NotNull(message = ValidationErrorCode.ORDER_DEFINITION_INPUT_EMPTY)
     @JsonFormat(pattern = Constant.DATE_FORMAT_YYYYMMDD)
     private LocalDate orderDate;
+    @JsonIgnore
+    @Override
+    public String localizeValidationFields(String fieldName) {
+        return fieldName;
+    }
 }

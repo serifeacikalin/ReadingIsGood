@@ -95,7 +95,7 @@ public class RestControllerExceptionHandler extends ResponseEntityExceptionHandl
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setResultCode(BaseResponse.ResultCode.ERROR);
         baseResponse.setMessageList(new ArrayList<>());
-        errors.forEach((fieldName, errorCode) -> baseResponse.getMessageList().add(new BaseResponseMessageDTO(errorCode, propertySource.get(errorCode).replace(VALIDATION_MESSAGE_DYNAMIC_VALUE, fieldName))));
+        errors.forEach((fieldName, errorCode) -> baseResponse.getMessageList().add(new BaseResponseMessageDTO(errorCode, propertySource.get(errorCode).replace(VALIDATION_MESSAGE_FIELD_NAME, fieldName))));
 
         return baseResponse;
     }

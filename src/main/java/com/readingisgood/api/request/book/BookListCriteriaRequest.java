@@ -1,7 +1,9 @@
 package com.readingisgood.api.request.book;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.readingisgood.api.dto.order.OrderDTO;
+import com.readingisgood.api.request.ValidatedRequest;
 import com.readingisgood.constant.ApiDoc;
 import com.readingisgood.constant.Constant;
 import com.readingisgood.constant.ValidationErrorCode;
@@ -11,7 +13,7 @@ import lombok.Data;
 import javax.validation.constraints.Positive;
 
 @Data
-public class BookListCriteriaRequest {
+public class BookListCriteriaRequest  implements ValidatedRequest{
 
     @ApiModelProperty(ApiDoc.Fields.BOOK_NO)
     private Long bookNo;
@@ -35,4 +37,9 @@ public class BookListCriteriaRequest {
 
     @ApiModelProperty(ApiDoc.Fields.ORDER_INFO)
     private OrderDTO order;
+    @JsonIgnore
+    @Override
+    public String localizeValidationFields(String fieldName) {
+        return fieldName;
+    }
 }

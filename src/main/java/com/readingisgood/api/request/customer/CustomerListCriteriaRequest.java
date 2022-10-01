@@ -1,6 +1,8 @@
 package com.readingisgood.api.request.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.readingisgood.api.dto.order.OrderDTO;
+import com.readingisgood.api.request.ValidatedRequest;
 import com.readingisgood.constant.ApiDoc;
 import com.readingisgood.constant.ValidationErrorCode;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,7 +13,7 @@ import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Data
-public class CustomerListCriteriaRequest {
+public class CustomerListCriteriaRequest implements ValidatedRequest {
 
     @ApiModelProperty(ApiDoc.Fields.CUSTOMER_NO)
     private Long customerNo;
@@ -39,4 +41,9 @@ public class CustomerListCriteriaRequest {
 
     @ApiModelProperty(ApiDoc.Fields.ORDER_LIST)
     private Set<OrderDTO> order;
+    @JsonIgnore
+    @Override
+    public String localizeValidationFields(String fieldName) {
+        return fieldName;
+    }
 }

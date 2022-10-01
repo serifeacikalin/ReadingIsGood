@@ -1,6 +1,8 @@
 package com.readingisgood.api.dto.book;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.readingisgood.api.request.ValidatedRequest;
 import com.readingisgood.constant.ApiDoc;
 import com.readingisgood.constant.Constant;
 import com.readingisgood.constant.FieldLength;
@@ -17,7 +19,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class BookDTO {
+public class BookDTO implements ValidatedRequest {
 
     private Long id;
 
@@ -50,4 +52,9 @@ public class BookDTO {
     @DecimalMax(value = FieldLength.BOOK_MAX_AMOUNT, message = ValidationErrorCode.INVALID_INPUT)
     @NotNull(message = ValidationErrorCode.BOOK_DEFINITION_INPUT_EMPTY)
     private BigDecimal amount;
+    @JsonIgnore
+    @Override
+    public String localizeValidationFields(String fieldName) {
+        return fieldName;
+    }
 }

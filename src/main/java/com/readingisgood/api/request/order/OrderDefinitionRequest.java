@@ -1,8 +1,10 @@
 package com.readingisgood.api.request.order;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.readingisgood.api.dto.book.BookDTO;
 import com.readingisgood.api.dto.customer.CustomerDTO;
+import com.readingisgood.api.request.ValidatedRequest;
 import com.readingisgood.constant.ApiDoc;
 import com.readingisgood.constant.Constant;
 import com.readingisgood.constant.ValidationErrorCode;
@@ -14,7 +16,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Data
-public class OrderDefinitionRequest {
+public class OrderDefinitionRequest implements ValidatedRequest {
 
     @ApiModelProperty(ApiDoc.Fields.ORDER_COUNT)
     @NotNull(message = ValidationErrorCode.ORDER_DEFINITION_INPUT_EMPTY)
@@ -30,4 +32,9 @@ public class OrderDefinitionRequest {
 
     @ApiModelProperty(ApiDoc.Fields.BOOK_LIST)
     private Set<BookDTO> books;
+    @JsonIgnore
+    @Override
+    public String localizeValidationFields(String fieldName) {
+        return fieldName;
+    }
 }

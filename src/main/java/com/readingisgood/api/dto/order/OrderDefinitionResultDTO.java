@@ -1,7 +1,9 @@
 package com.readingisgood.api.dto.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.readingisgood.api.dto.book.BookDTO;
 import com.readingisgood.api.dto.customer.CustomerDTO;
+import com.readingisgood.api.request.ValidatedRequest;
 import com.readingisgood.constant.FieldLength;
 import com.readingisgood.constant.ValidationErrorCode;
 import lombok.Getter;
@@ -14,7 +16,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class OrderDefinitionResultDTO {
+public class OrderDefinitionResultDTO implements ValidatedRequest {
 
     private Long id;
 
@@ -30,4 +32,9 @@ public class OrderDefinitionResultDTO {
     private Set<BookDTO> books;
 
     private CustomerDTO customer;
+    @JsonIgnore
+    @Override
+    public String localizeValidationFields(String fieldName) {
+        return fieldName;
+    }
 }

@@ -1,14 +1,14 @@
 package com.readingisgood.api.dto.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.readingisgood.api.request.ValidatedRequest;
 import com.readingisgood.constant.ApiDoc;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-public class CustomerDefinitionResultDTO {
+public class CustomerDefinitionResultDTO implements ValidatedRequest {
 
-    @JsonIgnore
     private Long id;
 
     @ApiModelProperty(ApiDoc.Fields.CUSTOMER_NO)
@@ -28,4 +28,9 @@ public class CustomerDefinitionResultDTO {
 
     @ApiModelProperty(ApiDoc.Fields.IDENTITY_NUMBER)
     private String identityNumber;
+    @JsonIgnore
+    @Override
+    public String localizeValidationFields(String fieldName) {
+        return fieldName;
+    }
 }

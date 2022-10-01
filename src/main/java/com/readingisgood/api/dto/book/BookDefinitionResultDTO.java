@@ -1,5 +1,7 @@
 package com.readingisgood.api.dto.book;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.readingisgood.api.request.ValidatedRequest;
 import com.readingisgood.constant.ApiDoc;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -9,7 +11,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class BookDefinitionResultDTO {
+public class BookDefinitionResultDTO implements ValidatedRequest {
 
     private Long id;
 
@@ -33,4 +35,9 @@ public class BookDefinitionResultDTO {
 
     @ApiModelProperty(ApiDoc.Fields.AMOUNT)
     private BigDecimal amount;
+    @JsonIgnore
+    @Override
+    public String localizeValidationFields(String fieldName) {
+        return fieldName;
+    }
 }
