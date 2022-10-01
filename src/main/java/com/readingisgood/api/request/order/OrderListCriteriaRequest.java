@@ -1,17 +1,23 @@
 package com.readingisgood.api.request.order;
 
-import com.readingisgood.constant.FieldLength;
-import com.readingisgood.constant.ValidationErrorCode;
+import com.readingisgood.constant.ApiDoc;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Data
 public class OrderListCriteriaRequest {
 
-    @Size(max = FieldLength.ORDER_NO, message = ValidationErrorCode.INVALID_INPUT)
+    @ApiModelProperty(ApiDoc.Fields.ORDER_NO)
     private Long orderNo;
 
-    @Size(max = FieldLength.CUSTOMER_NO, message = ValidationErrorCode.INVALID_INPUT)
+    @ApiModelProperty(ApiDoc.Fields.CUSTOMER_NO)
     private Long customerNo;
+
+    @ApiModelProperty(ApiDoc.Fields.STATUS)
+    private String status;
+
+    @ApiModelProperty(ApiDoc.Fields.ORDER_DATE)
+    private LocalDate orderDate;
 }

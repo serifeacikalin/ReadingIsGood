@@ -7,6 +7,7 @@ import com.readingisgood.entity.Customer;
 import com.readingisgood.entity.Order;
 import com.readingisgood.model.order.OrderDefinitionModel;
 import com.readingisgood.model.order.OrderListCriteriaModel;
+import com.readingisgood.model.order.OrderModel;
 import com.readingisgood.repository.BookRepository;
 import com.readingisgood.repository.CustomerRepository;
 import com.readingisgood.repository.OrderRepository;
@@ -42,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public OrderDefinitionModel save(OrderDefinitionModel orderModel) throws BusinessException {
+    public OrderModel save(OrderDefinitionModel orderModel) throws BusinessException {
         Order order = mapper.map(orderModel, Order.class);
         validator.validate(order);
         order.setStatus(ReadingIsGoodStatus.AKTIF.getValue());
@@ -52,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
         setBookOrderInfo(order);
         Order newRecord = repository.save(order);
         updateBookStock(order.getBooks(), order);
-        return mapper.map(newRecord, OrderDefinitionModel.class);
+        return mapper.map(newRecord, OrderModel.class);
     }
 
     private void setOrderCustomerInfo(Order order) {

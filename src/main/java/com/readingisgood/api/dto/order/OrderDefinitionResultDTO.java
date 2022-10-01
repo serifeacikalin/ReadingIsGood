@@ -9,15 +9,20 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
 @Setter
 public class OrderDefinitionResultDTO {
 
+    private Long id;
+
     @NotNull(message = ValidationErrorCode.ORDER_DEFINITION_INPUT_EMPTY)
     @Size(max = FieldLength.ORDER_NO, message = ValidationErrorCode.INVALID_INPUT)
     private Long orderNo;
+
+    private LocalDate orderDate;
 
     @NotNull(message = ValidationErrorCode.ORDER_DEFINITION_INPUT_EMPTY)
     private Long orderCount;

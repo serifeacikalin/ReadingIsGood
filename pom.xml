@@ -13,11 +13,11 @@
 	<artifactId>books-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ReadingIsGoodAPI</name>
+	<packaging>jar</packaging>
 	<description>API project for ReadingIsGood</description>
 
 	<properties>
 		<java.version>11</java.version>
-		<springfox-swagger2.version>3.0.0</springfox-swagger2.version>
 		<lombok.version>1.18.12</lombok.version>
 	</properties>
 
@@ -67,12 +67,14 @@
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
-			<version>${springfox-swagger2.version}</version>
+			<version>2.6.1</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${springfox-swagger2.version}</version>
+			<version>2.6.1</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

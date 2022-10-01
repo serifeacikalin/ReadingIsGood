@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 @Setter
 public class BookDefinitionResultDTO {
 
+    private Long id;
+
     @ApiModelProperty(ApiDoc.Fields.BOOK_NO)
     private Long bookNo;
 

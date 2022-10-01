@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readingisgood-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readingisgood-api
+    template:
+      metadata:
+        name: readingisgood-api
+        labels:
+          app: readingisgood-api
+      spec:
+        containers:
+          - name : readingisgood-api
+            image: serifea/readingisgoodapi:latest
+            imagePullPolicy: Always
+            ports:
+              - name: http
+                containerPort: 8080
+                protocol: TCP
+            resources:
+              requests:
+                cpu: 200m
+                memory: 1Gi
+              limits:
+                cpu: 1
+                memory: 1Gi
+
+

@@ -1,16 +1,15 @@
 package com.readingisgood.entity;
 
 import com.readingisgood.entity.common.BaseEntity;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @Entity
 @Table(name = "t_order")
 public class Order extends BaseEntity {
@@ -20,6 +19,9 @@ public class Order extends BaseEntity {
 
     @Column(name = "order_count",length = 10)
     private Long orderCount;
+
+    @Column(name = "order_date")
+    private LocalDate orderDate;
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;

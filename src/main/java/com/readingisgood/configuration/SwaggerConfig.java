@@ -1,11 +1,11 @@
 package com.readingisgood.configuration;
 
 import com.readingisgood.constant.ApiDoc;
+import com.readingisgood.infra.InboundService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.RequestHandler;
+import org.springframework.web.bind.annotation.RequestHeader;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -19,25 +19,23 @@ public class SwaggerConfig {
 
     @Bean
     public Docket booksApi() {
-
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName(ApiDoc.BOOKS_API_NAME)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.readingisgood"))
-                .paths(PathSelectors.regex("/.*"))
+                .apis(RequestHandlerSelectors.withMethodAnnotation(InboundService.class))
                 .build()
                 .useDefaultResponseMessages(false)
                 .apiInfo(getBooksApiInfo())
-                .ignoredParameterTypes(RequestHandler.class);
+                .ignoredParameterTypes(RequestHeader.class);
     }
 
     private ApiInfo getBooksApiInfo() {
-       return new ApiInfoBuilder()
-               .title(ApiDoc.BOOKS_API_NAME)
-               .version("1.0.0")
-               .description(ApiDoc.BOOKS_API_NAME)
-               .contact(new Contact("ReadIsGood Projesi", "help.readIsGood.com","iletisim@books.com.tr"))
-               .license("ReadIsGood Licence")
-               .build();
+        return new ApiInfoBuilder()
+                .title(ApiDoc.BOOKS_API_NAME)
+                .version("1.0.0")
+                .description(ApiDoc.BOOKS_API_NAME)
+                .contact(new Contact("ReadIsGood Projesi", "help.readIsGood.com","iletisim@books.com.tr"))
+                .license("ReadIsGood Licence")
+                .build();
     }
 }

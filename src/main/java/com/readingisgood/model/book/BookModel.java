@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class BookModel {
+    private Long id;
     private String bookName;
     private String authorName;
     private String publicationYear;

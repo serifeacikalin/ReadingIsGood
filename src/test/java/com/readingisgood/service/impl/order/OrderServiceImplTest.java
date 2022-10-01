@@ -2,12 +2,14 @@ package com.readingisgood.service.impl.order;
 
 import com.readingisgood.constant.SequenceTableName;
 import com.readingisgood.entity.Books;
+import com.readingisgood.entity.Customer;
 import com.readingisgood.entity.Order;
 import com.readingisgood.model.book.BookModel;
 import com.readingisgood.model.order.OrderDefinitionModel;
 import com.readingisgood.model.order.OrderListCriteriaModel;
 import com.readingisgood.model.order.OrderModel;
 import com.readingisgood.repository.BookRepository;
+import com.readingisgood.repository.CustomerRepository;
 import com.readingisgood.repository.OrderRepository;
 import com.readingisgood.service.MapperService;
 import com.readingisgood.service.NumberGeneratorFactory;
@@ -19,6 +21,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.authentication.CachingUserDetailsService;
 
 import java.util.*;
 
@@ -48,6 +51,9 @@ class OrderServiceImplTest {
     @Mock
     private OrderValidator validator;
 
+    @Mock
+    private CustomerRepository customerRepository;
+
     @InjectMocks
     private OrderServiceImpl service;
 
@@ -59,8 +65,9 @@ class OrderServiceImplTest {
         when(numberGeneratorFactory.createGenerator(SequenceTableName.ORDER_NO_SEQ)).thenReturn(numberGenerator);
         when(numberGenerator.generate()).thenReturn(ORDER_NO);
         when(repository.save(order)).thenReturn(order);
-        when(mapper.map(order, OrderDefinitionModel.class)).thenReturn(orderDefinitionModel);
-        OrderDefinitionModel result = service.save(orderDefinitionModel);
+        when(customerRepository.findByCustomerNoAndRecordStatusAndStatus(anyLong(),anyBoolean(), anyString())).thenReturn(customer);
+        when(mapper.map(order, OrderModel.class)).thenReturn(orderModel);
+        OrderModel result = service.save(orderDefinitionModel);
         assertEquals(ORDER_NO,result.getOrderNo());
     }
 
@@ -94,20 +101,20 @@ class OrderServiceImplTest {
     private static List<Order> orderList = new ArrayList<>();
     private static Books book = new Books();
     private static Set<Books> bookList = new HashSet<>();
-
     private static BookModel bookModel = new BookModel();
-
     private static Set<BookModel> bookModels = new HashSet<>();
     private static List<OrderDefinitionModel> orderDefinitionModels = new ArrayList<>();
     private static OrderListCriteriaModel criteriaModel = new OrderListCriteriaModel();
+
+    private static Customer customer = new Customer();
     private static final Long ORDER_NO = 1111L;
     private static final Long BOOK_NO = 1111L;
-
     private static final Long CUSTOMER_NO = 1L;
 
     static {
         orderModel.setOrderNo(ORDER_NO);
         order.setOrderNo(ORDER_NO);
+        order.setOrderCount(1L);
 
         book.setBookName("kitap1");
         book.setAuthorName("yazar1");
@@ -133,6 +140,14 @@ class OrderServiceImplTest {
 
         orderList.add(order);
         orderDefinitionModels.add(orderDefinitionModel);
+
+        customer.setCustomerName("musteri1");
+        customer.setEmail("xxx@ccc");
+        customer.setCustomerNo(CUSTOMER_NO);
+        customer.setPhoneNumber("0000");
+        customer.setAddress("turkiye");
+
+        order.setCustomer(customer);
     }
 
 

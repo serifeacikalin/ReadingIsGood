@@ -93,5 +93,4 @@ class BooksServiceImplTest {
         bookList.add(book);
         bookDefinitionModelList.add(bookDefinitionModel);
     }
-
 }

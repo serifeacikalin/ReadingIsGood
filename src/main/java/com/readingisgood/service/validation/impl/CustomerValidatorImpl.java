@@ -27,9 +27,6 @@ public class CustomerValidatorImpl implements CustomerValidator {
         if(relatedCustomer != null && customer.getCustomerNo() == null ){
             throw new BusinessException(ValidationErrorCode.CUSTOMER_IS_EXIST);
         }
-
-        //todo: email ,phone number ,tckn check
-
     }
 
     private void validateForUpdate(Customer customer) throws BusinessException {

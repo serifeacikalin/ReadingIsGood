@@ -5,7 +5,6 @@ import com.readingisgood.constant.ApiDoc;
 import com.readingisgood.constant.Constant;
 import com.readingisgood.constant.FieldLength;
 import com.readingisgood.constant.ValidationErrorCode;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +18,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class BookDTO {
+
+    private Long id;
 
     @ApiModelProperty(ApiDoc.Fields.BOOK_NO)
     @Size(max = FieldLength.BOOK_NO, message = ValidationErrorCode.INVALID_INPUT)

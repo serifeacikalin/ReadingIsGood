@@ -25,7 +25,6 @@ public class BookValidatorImpl implements BookValidator {
         if(relatedBook != null && book.getBookNo() == null){
             throw new BusinessException(ValidationErrorCode.BOOK_IS_EXIST);
         }
-
     }
 
     private void validateForUpdate(Books book) throws BusinessException {

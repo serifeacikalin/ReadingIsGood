@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class CustomerModel {
+    private Long id;
     private Long customerNo;
     private String customerName;
     private String email;

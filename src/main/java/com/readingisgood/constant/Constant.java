@@ -9,7 +9,7 @@ public class Constant {
 
     public static final String DATE_FORMAT_YYMM =  "uuMM";
 
-    public static final String DATE_FORMAT_YYYYMMDD =  "yyyy-MM-dd";
+    public static final String DATE_FORMAT_YYYYMMDD =  "yyyyMMdd";
 
     public static final String DATE_FORMAT_YYYY =  "yyyy";
 }

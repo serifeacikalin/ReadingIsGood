@@ -2,13 +2,14 @@ package com.readingisgood.service;
 
 import com.readingisgood.model.order.OrderDefinitionModel;
 import com.readingisgood.model.order.OrderListCriteriaModel;
+import com.readingisgood.model.order.OrderModel;
 import com.readingisgood.service.exception.BusinessException;
 
 import java.util.List;
 
 public interface OrderService {
 
-    OrderDefinitionModel save(OrderDefinitionModel orderModel) throws BusinessException;
+    OrderModel save(OrderDefinitionModel orderModel) throws BusinessException;
 
     List<OrderDefinitionModel> listOrder(OrderListCriteriaModel criteriaModel);
 
