@@ -21,12 +21,12 @@ public interface CustomerApi {
     @InboundService
     @ApiOperation(value = ApiDoc.Description.SAVE_CUSTOMER, notes = ApiDoc.Summary.SAVE_CUSTOMER)
     @PostMapping(value = "ekle")
-    CustomerDefinitionResponse save(@RequestBody CustomerDefinitionRequest request) throws BusinessException;
+    CustomerDefinitionResponse save(@Valid @RequestBody CustomerDefinitionRequest request) throws BusinessException;
 
     @InboundService
     @ApiOperation(value = ApiDoc.Description.UPDATE_CUSTOMER, notes = ApiDoc.Summary.UPDATE_CUSTOMER)
     @PostMapping(value = "guncelle")
-    CustomerDefinitionResponse update(@RequestBody CustomerDefinitionRequest request) throws BusinessException;
+    CustomerDefinitionResponse update(@Valid @RequestBody CustomerDefinitionRequest request) throws BusinessException;
 
     @InboundService
     @ApiOperation(value = ApiDoc.Description.LIST_BOOK, notes = ApiDoc.Summary.LIST_BOOK)

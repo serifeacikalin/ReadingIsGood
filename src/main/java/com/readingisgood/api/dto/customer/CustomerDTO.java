@@ -19,7 +19,7 @@ public class CustomerDTO implements ValidatedRequest {
     private Long id;
 
     @ApiModelProperty(ApiDoc.Fields.CUSTOMER_NO)
-    @Size(max = FieldLength.CUSTOMER_NO, message = ValidationErrorCode.INVALID_INPUT)
+    @Max(value = FieldLength.CUSTOMER_NO, message = ValidationErrorCode.INVALID_INPUT)
     @JsonProperty("customerNo")
     private Long customerNo;
 
@@ -31,12 +31,13 @@ public class CustomerDTO implements ValidatedRequest {
     @ApiModelProperty(ApiDoc.Fields.EMAIL)
     @NotNull(message = ValidationErrorCode.CUSTOMER_DEFINITION_INPUT_EMPTY)
     @Email(message = ValidationErrorCode.EMAIL_ADDRESS_INVALID)
+    //@Pattern(regexp = "/^[^0-9][a-zA-z0-9_]+([.][a-zA-z0-9_]+)*[@][a-zA-z0-9_]+([.][a-zA-z0-9_]+)*[.][a-zA-Z]{2,4}$/", message = ValidationErrorCode.EMAIL_ADDRESS_INVALID)
     @JsonProperty("email")
     private String email;
 
     @ApiModelProperty(ApiDoc.Fields.PHONE_NUMBER)
     @NotNull(message = ValidationErrorCode.CUSTOMER_DEFINITION_INPUT_EMPTY)
-    @Pattern(regexp = "^[1-9]{1}[0-9]{9}[02468]{1}$", message = ValidationErrorCode.PHONE_NUMBER_INVALID)
+   // @Pattern(regexp = "/5[0,3,4,5,6][0-9]\\d\\d\\d\\d\\d\\d\\d$/", message = ValidationErrorCode.PHONE_NUMBER_INVALID)
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
